@@ -4,9 +4,7 @@ import io.helpermethod.jpa.performance.posts.Comment
 import io.helpermethod.jpa.performance.posts.CommentRepository
 import io.helpermethod.jpa.performance.posts.Post
 import io.helpermethod.jpa.performance.posts.PostRepository
-import jakarta.transaction.Transactional
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.quickperf.junit5.QuickPerfTest
 import org.quickperf.sql.annotation.ExpectInsert
@@ -57,7 +55,7 @@ class JpaPerformanceApplicationTests(
             )
         )
 
-        assertThat(commentRepository.findByIdOrNull(comment.id))
+        assertThat(commentRepository.findCommentById(comment.id!!))
             .usingRecursiveComparison()
             .isEqualTo(comment)
     }
